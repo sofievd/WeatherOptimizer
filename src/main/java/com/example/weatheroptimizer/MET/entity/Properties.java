@@ -73,4 +73,12 @@ public class Properties {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "Properties{" +
+                "meta=" + meta +
+                ", timeseries=" + timeseries +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }

@@ -132,4 +132,16 @@ public class Details {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "Details{" +
+                "airPressureAtSeaLevel=" + airPressureAtSeaLevel +
+                ", airTemperature=" + airTemperature +
+                ", cloudAreaFraction=" + cloudAreaFraction +
+                ", relativeHumidity=" + relativeHumidity +
+                ", windFromDirection=" + windFromDirection +
+                ", windSpeed=" + windSpeed +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }

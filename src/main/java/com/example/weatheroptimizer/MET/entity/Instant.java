@@ -56,4 +56,11 @@ public class Instant {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "Instant{" +
+                "details=" + details +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }

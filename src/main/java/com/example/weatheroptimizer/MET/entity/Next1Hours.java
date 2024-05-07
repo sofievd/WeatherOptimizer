@@ -73,4 +73,12 @@ public class Next1Hours {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "Next1Hours{" +
+                "summary=" + summary +
+                ", details=" + details +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }

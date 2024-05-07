@@ -73,4 +73,12 @@ public class Timeseries {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "Timeseries{" +
+                "time='" + time + '\'' +
+                ", data=" + data +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }

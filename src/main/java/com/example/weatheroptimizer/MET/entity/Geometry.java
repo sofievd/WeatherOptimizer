@@ -74,4 +74,12 @@ public class Geometry {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "Geometry{" +
+                "type='" + type + '\'' +
+                ", coordinates=" + coordinates +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }

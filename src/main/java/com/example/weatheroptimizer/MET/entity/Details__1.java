@@ -28,4 +28,10 @@ public class Details__1 {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "Details__1{" +
+                "additionalProperties=" + additionalProperties +
+                '}';
+    }
 }

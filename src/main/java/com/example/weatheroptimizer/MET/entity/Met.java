@@ -87,4 +87,13 @@ public class Met {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "Met{" +
+                "type='" + type + '\'' +
+                ", geometry=" + geometry +
+                ", properties=" + properties +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }

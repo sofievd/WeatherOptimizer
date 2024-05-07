@@ -73,4 +73,12 @@ public class Meta {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "Meta{" +
+                "updatedAt='" + updatedAt + '\'' +
+                ", units=" + units +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }

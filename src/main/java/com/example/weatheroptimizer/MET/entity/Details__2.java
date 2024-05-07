@@ -57,4 +57,11 @@ public class Details__2 {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "Details__2{" +
+                "precipitationAmount=" + precipitationAmount +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }

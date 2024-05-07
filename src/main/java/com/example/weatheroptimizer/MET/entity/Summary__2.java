@@ -57,4 +57,11 @@ public class Summary__2 {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "Summary__2{" +
+                "symbolCode='" + symbolCode + '\'' +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }

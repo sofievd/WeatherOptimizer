@@ -104,4 +104,14 @@ public class Data {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "Data{" +
+                "instant=" + instant +
+                ", next12Hours=" + next12Hours +
+                ", next1Hours=" + next1Hours +
+                ", next6Hours=" + next6Hours +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }
