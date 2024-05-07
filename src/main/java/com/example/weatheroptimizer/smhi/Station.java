@@ -1,4 +1,4 @@
-package com.example.weatheroptimization.smhi;
+package com.example.weatheroptimizer.smhi;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
