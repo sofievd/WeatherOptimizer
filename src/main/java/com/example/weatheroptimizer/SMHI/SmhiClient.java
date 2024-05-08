@@ -3,11 +3,14 @@ package com.example.weatheroptimizer.SMHI;
 import com.example.weatheroptimizer.SMHI.model.Parameter;
 import com.example.weatheroptimizer.SMHI.model.Smhi;
 import com.example.weatheroptimizer.SMHI.model.TimeSeries;
+import com.example.weatheroptimizer.util.ClientHelper;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+
+import java.util.Optional;
 
 @Service
 public class SmhiClient {
@@ -18,33 +21,46 @@ public class SmhiClient {
 
     public SmhiClient() {
         webClient = WebClient.builder()
-                .baseUrl("https://opendata-download-metfcst.smhi.se/")
+                .baseUrl(ENTRY_POINT)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
     }
 
-    public void getSmhiData(){
+    public Smhi getSmhiData() {
         Mono<Smhi> mono = webClient
                 .get()
-                .uri(ENTRY_POINT + GET_DATA)
+                .uri(GET_DATA)
                 .retrieve()
                 .bodyToMono(Smhi.class);
 
-        Smhi smhi =  mono.block();
+        return mono.block();
+    }
 
-        for (TimeSeries timeSeries: smhi.getTimeSeries()){
-            System.out.print("timestamp: " + timeSeries.getValidTime());
-
-            for (Parameter parameter : timeSeries.getParameters()) {
-                if (parameter.getName().equalsIgnoreCase("t")) {
-                    System.out.print("\t\ttemp: " + parameter.getValues().get(0));
-                }
-
-                if (parameter.getName().equalsIgnoreCase("r")) {
-                    System.out.println("\t\thumidity: " + Math.round(parameter.getValues().get(0)));
-                }
+    public Optional<TimeSeries> getTimeSeriesFromSmhi(Smhi smhi) {
+        for (TimeSeries t : smhi.getTimeSeries()) {
+            if (ClientHelper.checkTimeInRange(t.getValidTime())) {
+                return Optional.of(t);
             }
         }
+        return Optional.empty();
+    }
+
+    public Double getTemperature(TimeSeries timeSeries) {
+        for (Parameter parameter : timeSeries.getParameters()) {
+            if (parameter.getName().equalsIgnoreCase("t")) {
+                return parameter.getValues().get(0);
+            }
+        }
+        return 0.0;
+    }
+
+    public Integer getHumidity(TimeSeries timeSeries) {
+        for (Parameter parameter : timeSeries.getParameters()) {
+            if (parameter.getName().equalsIgnoreCase("r")) {
+                return Math.toIntExact(Math.round(parameter.getValues().get(0)));
+            }
+        }
+        return 0;
     }
 
 }
