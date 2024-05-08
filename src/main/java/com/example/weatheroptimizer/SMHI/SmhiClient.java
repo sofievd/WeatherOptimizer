@@ -18,7 +18,7 @@ public class SmhiClient {
 
     public SmhiClient() {
         webClient = WebClient.builder()
-                .baseUrl("https://opendata-download-metfcst.smhi.se/")
+                .baseUrl(ENTRY_POINT)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
     }
@@ -26,7 +26,7 @@ public class SmhiClient {
     public void getSmhiData(){
         Mono<Smhi> mono = webClient
                 .get()
-                .uri(ENTRY_POINT + GET_DATA)
+                .uri(GET_DATA)
                 .retrieve()
                 .bodyToMono(Smhi.class);
 
