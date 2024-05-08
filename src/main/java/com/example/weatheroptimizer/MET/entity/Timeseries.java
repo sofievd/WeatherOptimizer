@@ -1,6 +1,7 @@
 
 package com.example.weatheroptimizer.MET.entity;
 
+import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -19,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Timeseries {
 
     @JsonProperty("time")
-    private String time;
+    private LocalDateTime time;
     @JsonProperty("data")
     private Data data;
     @JsonIgnore
@@ -37,19 +38,19 @@ public class Timeseries {
      * @param data
      * @param time
      */
-    public Timeseries(String time, Data data) {
+    public Timeseries(LocalDateTime time, Data data) {
         super();
         this.time = time;
         this.data = data;
     }
 
     @JsonProperty("time")
-    public String getTime() {
+    public LocalDateTime getTime() {
         return time;
     }
 
     @JsonProperty("time")
-    public void setTime(String time) {
+    public void setTime(LocalDateTime time) {
         this.time = time;
     }
 
