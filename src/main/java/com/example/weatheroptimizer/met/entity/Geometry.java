@@ -1,8 +1,10 @@
 
-package com.example.weatheroptimizer.MET.entity;
+package com.example.weatheroptimizer.met.entity;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,16 +14,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "summary",
-    "details"
+    "type",
+    "coordinates"
 })
+public class Geometry {
 
-public class Next1Hours {
-
-    @JsonProperty("summary")
-    private Summary__1 summary;
-    @JsonProperty("details")
-    private Details__2 details;
+    @JsonProperty("type")
+    private String type;
+    @JsonProperty("coordinates")
+    private List<Double> coordinates;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -29,38 +30,38 @@ public class Next1Hours {
      * No args constructor for use in serialization
      * 
      */
-    public Next1Hours() {
+    public Geometry() {
     }
 
     /**
      * 
-     * @param summary
-     * @param details
+     * @param coordinates
+     * @param type
      */
-    public Next1Hours(Summary__1 summary, Details__2 details) {
+    public Geometry(String type, List<Double> coordinates) {
         super();
-        this.summary = summary;
-        this.details = details;
+        this.type = type;
+        this.coordinates = coordinates;
     }
 
-    @JsonProperty("summary")
-    public Summary__1 getSummary() {
-        return summary;
+    @JsonProperty("type")
+    public String getType() {
+        return type;
     }
 
-    @JsonProperty("summary")
-    public void setSummary(Summary__1 summary) {
-        this.summary = summary;
+    @JsonProperty("type")
+    public void setType(String type) {
+        this.type = type;
     }
 
-    @JsonProperty("details")
-    public Details__2 getDetails() {
-        return details;
+    @JsonProperty("coordinates")
+    public List<Double> getCoordinates() {
+        return coordinates;
     }
 
-    @JsonProperty("details")
-    public void setDetails(Details__2 details) {
-        this.details = details;
+    @JsonProperty("coordinates")
+    public void setCoordinates(List<Double> coordinates) {
+        this.coordinates = coordinates;
     }
 
     @JsonAnyGetter
@@ -75,9 +76,9 @@ public class Next1Hours {
 
     @Override
     public String toString() {
-        return "Next1Hours{" +
-                "summary=" + summary +
-                ", details=" + details +
+        return "Geometry{" +
+                "type='" + type + '\'' +
+                ", coordinates=" + coordinates +
                 ", additionalProperties=" + additionalProperties +
                 '}';
     }

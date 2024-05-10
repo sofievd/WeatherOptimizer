@@ -1,5 +1,5 @@
 
-package com.example.weatheroptimizer.MET.entity;
+package com.example.weatheroptimizer.met.entity;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -7,45 +7,16 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "symbol_code"
-})
-public class Summary {
 
-    @JsonProperty("symbol_code")
-    private String symbolCode;
+})
+public class Details__1 {
+
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public Summary() {
-    }
-
-    /**
-     * 
-     * @param symbolCode
-     */
-    public Summary(String symbolCode) {
-        super();
-        this.symbolCode = symbolCode;
-    }
-
-    @JsonProperty("symbol_code")
-    public String getSymbolCode() {
-        return symbolCode;
-    }
-
-    @JsonProperty("symbol_code")
-    public void setSymbolCode(String symbolCode) {
-        this.symbolCode = symbolCode;
-    }
 
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
@@ -59,9 +30,8 @@ public class Summary {
 
     @Override
     public String toString() {
-        return "Summary{" +
-                "symbolCode='" + symbolCode + '\'' +
-                ", additionalProperties=" + additionalProperties +
+        return "Details__1{" +
+                "additionalProperties=" + additionalProperties +
                 '}';
     }
 }

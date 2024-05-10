@@ -1,5 +1,5 @@
 
-package com.example.weatheroptimizer.MET.entity;
+package com.example.weatheroptimizer.met.entity;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -12,12 +12,16 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "precipitation_amount"
+    "summary",
+    "details"
 })
-public class Details__2 {
 
-    @JsonProperty("precipitation_amount")
-    private Double precipitationAmount;
+public class Next1Hours {
+
+    @JsonProperty("summary")
+    private Summary__1 summary;
+    @JsonProperty("details")
+    private Details__2 details;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -25,26 +29,38 @@ public class Details__2 {
      * No args constructor for use in serialization
      * 
      */
-    public Details__2() {
+    public Next1Hours() {
     }
 
     /**
      * 
-     * @param precipitationAmount
+     * @param summary
+     * @param details
      */
-    public Details__2(Double precipitationAmount) {
+    public Next1Hours(Summary__1 summary, Details__2 details) {
         super();
-        this.precipitationAmount = precipitationAmount;
+        this.summary = summary;
+        this.details = details;
     }
 
-    @JsonProperty("precipitation_amount")
-    public Double getPrecipitationAmount() {
-        return precipitationAmount;
+    @JsonProperty("summary")
+    public Summary__1 getSummary() {
+        return summary;
     }
 
-    @JsonProperty("precipitation_amount")
-    public void setPrecipitationAmount(Double precipitationAmount) {
-        this.precipitationAmount = precipitationAmount;
+    @JsonProperty("summary")
+    public void setSummary(Summary__1 summary) {
+        this.summary = summary;
+    }
+
+    @JsonProperty("details")
+    public Details__2 getDetails() {
+        return details;
+    }
+
+    @JsonProperty("details")
+    public void setDetails(Details__2 details) {
+        this.details = details;
     }
 
     @JsonAnyGetter
@@ -59,8 +75,9 @@ public class Details__2 {
 
     @Override
     public String toString() {
-        return "Details__2{" +
-                "precipitationAmount=" + precipitationAmount +
+        return "Next1Hours{" +
+                "summary=" + summary +
+                ", details=" + details +
                 ", additionalProperties=" + additionalProperties +
                 '}';
     }

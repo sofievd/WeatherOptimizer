@@ -1,5 +1,5 @@
 
-package com.example.weatheroptimizer.MET.entity;
+package com.example.weatheroptimizer.met.entity;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -12,13 +12,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "precipitation_amount"
+    "symbol_code"
 })
+public class Summary__1 {
 
-public class Details__3 {
-
-    @JsonProperty("precipitation_amount")
-    private Double precipitationAmount;
+    @JsonProperty("symbol_code")
+    private String symbolCode;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -26,26 +25,26 @@ public class Details__3 {
      * No args constructor for use in serialization
      * 
      */
-    public Details__3() {
+    public Summary__1() {
     }
 
     /**
      * 
-     * @param precipitationAmount
+     * @param symbolCode
      */
-    public Details__3(Double precipitationAmount) {
+    public Summary__1(String symbolCode) {
         super();
-        this.precipitationAmount = precipitationAmount;
+        this.symbolCode = symbolCode;
     }
 
-    @JsonProperty("precipitation_amount")
-    public Double getPrecipitationAmount() {
-        return precipitationAmount;
+    @JsonProperty("symbol_code")
+    public String getSymbolCode() {
+        return symbolCode;
     }
 
-    @JsonProperty("precipitation_amount")
-    public void setPrecipitationAmount(Double precipitationAmount) {
-        this.precipitationAmount = precipitationAmount;
+    @JsonProperty("symbol_code")
+    public void setSymbolCode(String symbolCode) {
+        this.symbolCode = symbolCode;
     }
 
     @JsonAnyGetter
@@ -60,8 +59,8 @@ public class Details__3 {
 
     @Override
     public String toString() {
-        return "Details__3{" +
-                "precipitationAmount=" + precipitationAmount +
+        return "Summary__1{" +
+                "symbolCode='" + symbolCode + '\'' +
                 ", additionalProperties=" + additionalProperties +
                 '}';
     }

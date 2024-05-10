@@ -1,5 +1,5 @@
 
-package com.example.weatheroptimizer.MET.entity;
+package com.example.weatheroptimizer.met.entity;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;

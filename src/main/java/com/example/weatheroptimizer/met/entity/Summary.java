@@ -1,9 +1,8 @@
 
-package com.example.weatheroptimizer.MET.entity;
+package com.example.weatheroptimizer.met.entity;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -13,15 +12,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "updated_at",
-    "units"
+    "symbol_code"
 })
-public class Meta {
+public class Summary {
 
-    @JsonProperty("updated_at")
-    private String updatedAt;
-    @JsonProperty("units")
-    private Units units;
+    @JsonProperty("symbol_code")
+    private String symbolCode;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -29,38 +25,26 @@ public class Meta {
      * No args constructor for use in serialization
      * 
      */
-    public Meta() {
+    public Summary() {
     }
 
     /**
      * 
-     * @param units
-     * @param updatedAt
+     * @param symbolCode
      */
-    public Meta(String updatedAt, Units units) {
+    public Summary(String symbolCode) {
         super();
-        this.updatedAt = updatedAt;
-        this.units = units;
+        this.symbolCode = symbolCode;
     }
 
-    @JsonProperty("updated_at")
-    public String getUpdatedAt() {
-        return updatedAt;
+    @JsonProperty("symbol_code")
+    public String getSymbolCode() {
+        return symbolCode;
     }
 
-    @JsonProperty("updated_at")
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    @JsonProperty("units")
-    public Units getUnits() {
-        return units;
-    }
-
-    @JsonProperty("units")
-    public void setUnits(Units units) {
-        this.units = units;
+    @JsonProperty("symbol_code")
+    public void setSymbolCode(String symbolCode) {
+        this.symbolCode = symbolCode;
     }
 
     @JsonAnyGetter
@@ -75,9 +59,8 @@ public class Meta {
 
     @Override
     public String toString() {
-        return "Meta{" +
-                "updatedAt='" + updatedAt + '\'' +
-                ", units=" + units +
+        return "Summary{" +
+                "symbolCode='" + symbolCode + '\'' +
                 ", additionalProperties=" + additionalProperties +
                 '}';
     }

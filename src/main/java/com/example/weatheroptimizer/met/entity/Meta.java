@@ -1,8 +1,9 @@
 
-package com.example.weatheroptimizer.MET.entity;
+package com.example.weatheroptimizer.met.entity;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,12 +13,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "symbol_code"
+    "updated_at",
+    "units"
 })
-public class Summary__1 {
+public class Meta {
 
-    @JsonProperty("symbol_code")
-    private String symbolCode;
+    @JsonProperty("updated_at")
+    private String updatedAt;
+    @JsonProperty("units")
+    private Units units;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -25,26 +29,38 @@ public class Summary__1 {
      * No args constructor for use in serialization
      * 
      */
-    public Summary__1() {
+    public Meta() {
     }
 
     /**
      * 
-     * @param symbolCode
+     * @param units
+     * @param updatedAt
      */
-    public Summary__1(String symbolCode) {
+    public Meta(String updatedAt, Units units) {
         super();
-        this.symbolCode = symbolCode;
+        this.updatedAt = updatedAt;
+        this.units = units;
     }
 
-    @JsonProperty("symbol_code")
-    public String getSymbolCode() {
-        return symbolCode;
+    @JsonProperty("updated_at")
+    public String getUpdatedAt() {
+        return updatedAt;
     }
 
-    @JsonProperty("symbol_code")
-    public void setSymbolCode(String symbolCode) {
-        this.symbolCode = symbolCode;
+    @JsonProperty("updated_at")
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    @JsonProperty("units")
+    public Units getUnits() {
+        return units;
+    }
+
+    @JsonProperty("units")
+    public void setUnits(Units units) {
+        this.units = units;
     }
 
     @JsonAnyGetter
@@ -59,8 +75,9 @@ public class Summary__1 {
 
     @Override
     public String toString() {
-        return "Summary__1{" +
-                "symbolCode='" + symbolCode + '\'' +
+        return "Meta{" +
+                "updatedAt='" + updatedAt + '\'' +
+                ", units=" + units +
                 ", additionalProperties=" + additionalProperties +
                 '}';
     }

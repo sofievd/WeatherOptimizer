@@ -1,5 +1,5 @@
 
-package com.example.weatheroptimizer.MET.entity;
+package com.example.weatheroptimizer.met.entity;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -15,24 +15,27 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "air_pressure_at_sea_level",
     "air_temperature",
     "cloud_area_fraction",
+    "precipitation_amount",
     "relative_humidity",
     "wind_from_direction",
     "wind_speed"
 })
-public class Details {
+public class Units {
 
     @JsonProperty("air_pressure_at_sea_level")
-    private Double airPressureAtSeaLevel;
+    private String airPressureAtSeaLevel;
     @JsonProperty("air_temperature")
-    private Double airTemperature;
+    private String airTemperature;
     @JsonProperty("cloud_area_fraction")
-    private Double cloudAreaFraction;
+    private String cloudAreaFraction;
+    @JsonProperty("precipitation_amount")
+    private String precipitationAmount;
     @JsonProperty("relative_humidity")
-    private Double relativeHumidity;
+    private String relativeHumidity;
     @JsonProperty("wind_from_direction")
-    private Double windFromDirection;
+    private String windFromDirection;
     @JsonProperty("wind_speed")
-    private Double windSpeed;
+    private String windSpeed;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -40,7 +43,7 @@ public class Details {
      * No args constructor for use in serialization
      * 
      */
-    public Details() {
+    public Units() {
     }
 
     /**
@@ -48,77 +51,89 @@ public class Details {
      * @param airTemperature
      * @param relativeHumidity
      * @param windFromDirection
+     * @param precipitationAmount
      * @param airPressureAtSeaLevel
      * @param windSpeed
      * @param cloudAreaFraction
      */
-    public Details(Double airPressureAtSeaLevel, Double airTemperature, Double cloudAreaFraction, Double relativeHumidity, Double windFromDirection, Double windSpeed) {
+    public Units(String airPressureAtSeaLevel, String airTemperature, String cloudAreaFraction, String precipitationAmount, String relativeHumidity, String windFromDirection, String windSpeed) {
         super();
         this.airPressureAtSeaLevel = airPressureAtSeaLevel;
         this.airTemperature = airTemperature;
         this.cloudAreaFraction = cloudAreaFraction;
+        this.precipitationAmount = precipitationAmount;
         this.relativeHumidity = relativeHumidity;
         this.windFromDirection = windFromDirection;
         this.windSpeed = windSpeed;
     }
 
     @JsonProperty("air_pressure_at_sea_level")
-    public Double getAirPressureAtSeaLevel() {
+    public String getAirPressureAtSeaLevel() {
         return airPressureAtSeaLevel;
     }
 
     @JsonProperty("air_pressure_at_sea_level")
-    public void setAirPressureAtSeaLevel(Double airPressureAtSeaLevel) {
+    public void setAirPressureAtSeaLevel(String airPressureAtSeaLevel) {
         this.airPressureAtSeaLevel = airPressureAtSeaLevel;
     }
 
     @JsonProperty("air_temperature")
-    public Double getAirTemperature() {
+    public String getAirTemperature() {
         return airTemperature;
     }
 
     @JsonProperty("air_temperature")
-    public void setAirTemperature(Double airTemperature) {
+    public void setAirTemperature(String airTemperature) {
         this.airTemperature = airTemperature;
     }
 
     @JsonProperty("cloud_area_fraction")
-    public Double getCloudAreaFraction() {
+    public String getCloudAreaFraction() {
         return cloudAreaFraction;
     }
 
     @JsonProperty("cloud_area_fraction")
-    public void setCloudAreaFraction(Double cloudAreaFraction) {
+    public void setCloudAreaFraction(String cloudAreaFraction) {
         this.cloudAreaFraction = cloudAreaFraction;
     }
 
+    @JsonProperty("precipitation_amount")
+    public String getPrecipitationAmount() {
+        return precipitationAmount;
+    }
+
+    @JsonProperty("precipitation_amount")
+    public void setPrecipitationAmount(String precipitationAmount) {
+        this.precipitationAmount = precipitationAmount;
+    }
+
     @JsonProperty("relative_humidity")
-    public Double getRelativeHumidity() {
+    public String getRelativeHumidity() {
         return relativeHumidity;
     }
 
     @JsonProperty("relative_humidity")
-    public void setRelativeHumidity(Double relativeHumidity) {
+    public void setRelativeHumidity(String relativeHumidity) {
         this.relativeHumidity = relativeHumidity;
     }
 
     @JsonProperty("wind_from_direction")
-    public Double getWindFromDirection() {
+    public String getWindFromDirection() {
         return windFromDirection;
     }
 
     @JsonProperty("wind_from_direction")
-    public void setWindFromDirection(Double windFromDirection) {
+    public void setWindFromDirection(String windFromDirection) {
         this.windFromDirection = windFromDirection;
     }
 
     @JsonProperty("wind_speed")
-    public Double getWindSpeed() {
+    public String getWindSpeed() {
         return windSpeed;
     }
 
     @JsonProperty("wind_speed")
-    public void setWindSpeed(Double windSpeed) {
+    public void setWindSpeed(String windSpeed) {
         this.windSpeed = windSpeed;
     }
 
@@ -134,13 +149,14 @@ public class Details {
 
     @Override
     public String toString() {
-        return "Details{" +
-                "airPressureAtSeaLevel=" + airPressureAtSeaLevel +
-                ", airTemperature=" + airTemperature +
-                ", cloudAreaFraction=" + cloudAreaFraction +
-                ", relativeHumidity=" + relativeHumidity +
-                ", windFromDirection=" + windFromDirection +
-                ", windSpeed=" + windSpeed +
+        return "Units{" +
+                "airPressureAtSeaLevel='" + airPressureAtSeaLevel + '\'' +
+                ", airTemperature='" + airTemperature + '\'' +
+                ", cloudAreaFraction='" + cloudAreaFraction + '\'' +
+                ", precipitationAmount='" + precipitationAmount + '\'' +
+                ", relativeHumidity='" + relativeHumidity + '\'' +
+                ", windFromDirection='" + windFromDirection + '\'' +
+                ", windSpeed='" + windSpeed + '\'' +
                 ", additionalProperties=" + additionalProperties +
                 '}';
     }

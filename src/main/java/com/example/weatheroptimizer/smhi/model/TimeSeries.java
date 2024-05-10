@@ -1,5 +1,5 @@
 
-package com.example.weatheroptimizer.SMHI.model;
+package com.example.weatheroptimizer.smhi.model;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;

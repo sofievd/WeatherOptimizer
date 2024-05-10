@@ -1,8 +1,7 @@
 
-package com.example.weatheroptimizer.MET.entity;
+package com.example.weatheroptimizer.met.entity;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -13,15 +12,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "meta",
-    "timeseries"
+    "precipitation_amount"
 })
-public class Properties {
 
-    @JsonProperty("meta")
-    private Meta meta;
-    @JsonProperty("timeseries")
-    private List<Timeseries> timeseries;
+public class Details__3 {
+
+    @JsonProperty("precipitation_amount")
+    private Double precipitationAmount;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -29,38 +26,26 @@ public class Properties {
      * No args constructor for use in serialization
      * 
      */
-    public Properties() {
+    public Details__3() {
     }
 
     /**
      * 
-     * @param timeseries
-     * @param meta
+     * @param precipitationAmount
      */
-    public Properties(Meta meta, List<Timeseries> timeseries) {
+    public Details__3(Double precipitationAmount) {
         super();
-        this.meta = meta;
-        this.timeseries = timeseries;
+        this.precipitationAmount = precipitationAmount;
     }
 
-    @JsonProperty("meta")
-    public Meta getMeta() {
-        return meta;
+    @JsonProperty("precipitation_amount")
+    public Double getPrecipitationAmount() {
+        return precipitationAmount;
     }
 
-    @JsonProperty("meta")
-    public void setMeta(Meta meta) {
-        this.meta = meta;
-    }
-
-    @JsonProperty("timeseries")
-    public List<Timeseries> getTimeseries() {
-        return timeseries;
-    }
-
-    @JsonProperty("timeseries")
-    public void setTimeseries(List<Timeseries> timeseries) {
-        this.timeseries = timeseries;
+    @JsonProperty("precipitation_amount")
+    public void setPrecipitationAmount(Double precipitationAmount) {
+        this.precipitationAmount = precipitationAmount;
     }
 
     @JsonAnyGetter
@@ -75,9 +60,8 @@ public class Properties {
 
     @Override
     public String toString() {
-        return "Properties{" +
-                "meta=" + meta +
-                ", timeseries=" + timeseries +
+        return "Details__3{" +
+                "precipitationAmount=" + precipitationAmount +
                 ", additionalProperties=" + additionalProperties +
                 '}';
     }

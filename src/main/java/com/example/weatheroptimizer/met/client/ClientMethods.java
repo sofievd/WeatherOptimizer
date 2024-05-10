@@ -1,7 +1,7 @@
-package com.example.weatheroptimizer.MET.client;
+package com.example.weatheroptimizer.met.client;
 
-import com.example.weatheroptimizer.MET.entity.Met;
-import com.example.weatheroptimizer.MET.entity.Timeseries;
+import com.example.weatheroptimizer.met.entity.Met;
+import com.example.weatheroptimizer.met.entity.Timeseries;
 import com.example.weatheroptimizer.util.ClientHelper;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
