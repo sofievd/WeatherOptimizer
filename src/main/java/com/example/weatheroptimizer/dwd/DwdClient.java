@@ -1,0 +1,105 @@
+package com.example.weatheroptimizer.dwd;
+
+import com.example.weatheroptimizer.dwd.model.Dwd;
+import com.example.weatheroptimizer.forecast.WeatherDataProvider;
+import com.example.weatheroptimizer.forecast.model.Humidity;
+import com.example.weatheroptimizer.forecast.model.Temperature;
+import com.example.weatheroptimizer.forecast.model.WeatherData;
+import com.example.weatheroptimizer.forecast.model.WeatherSource;
+import com.example.weatheroptimizer.util.ClientHelper;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
+
+import java.time.LocalDateTime;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
+@Service
+public class DwdClient implements WeatherDataProvider {
+    private static final String ENTRY_POINT = "https://api.open-meteo.com/v1";
+    private WebClient webClient;
+
+    public DwdClient() {
+        webClient = WebClient.builder()
+                .baseUrl(ENTRY_POINT)
+                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .build();
+    }
+
+    private Dwd getDwdData() {
+        Mono<Dwd> mono = webClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("/dwd-icon")
+                        .queryParam("latitude", "59.3094")
+                        .queryParam("longitude", "18.0234")
+                        .queryParam("hourly",
+                                String.join(",",
+                                "temperature_2m", "relative_humidity_2m", "precipitation"))
+                        .queryParam("timezone", "{timezone}")
+                        .queryParam("forecast_days", "2")
+                        .build("Europe/Berlin"))
+                .retrieve()
+                .bodyToMono(Dwd.class);
+
+        return mono.block();
+    }
+
+    private Optional<String> getTimeFromDwdData(Dwd dwdData) {
+        for (String dateTime : dwdData.getHourly().getTime()) {
+            if (ClientHelper.checkTimeInRange(LocalDateTime.parse(dateTime))) {
+                return Optional.of(dateTime);
+            }
+        }
+        return Optional.empty();
+    }
+
+    private Optional<Integer> getIndexOfTimeInHourlyList(Dwd dwdData, String dateTime) {
+        if (dwdData.getHourly().getTime().contains(dateTime)) {
+            return Optional.of(dwdData.getHourly().getTime().indexOf(dateTime));
+        }
+        return Optional.empty();
+    }
+
+    private Temperature getTemperature(Dwd dwdData, String dateTime) {
+        Optional<Integer> opIndex = getIndexOfTimeInHourlyList(dwdData, dateTime);
+        if (opIndex.isPresent()) {
+            int index = opIndex.get();
+            if (dwdData.getHourly().getTemperature2m().size() > index) {
+                return new Temperature(dwdData.getHourly().getTemperature2m().get(index),
+                        dwdData.getHourlyUnits().getTemperature2m());
+            }
+        }
+        throw new NoSuchElementException("Temperature data missing for desired time");
+    }
+
+    private Humidity getHumidity(Dwd dwdData, String dateTime) {
+        Optional<Integer> opIndex = getIndexOfTimeInHourlyList(dwdData, dateTime);
+        if (opIndex.isPresent()) {
+            int index = opIndex.get();
+            if (dwdData.getHourly().getRelativeHumidity2m().size() > index) {
+                return new Humidity(dwdData.getHourly().getRelativeHumidity2m().get(index),
+                        dwdData.getHourlyUnits().getRelativeHumidity2m());
+            }
+        }
+        throw new NoSuchElementException("Humidity data missing for desired time");
+    }
+
+    @Override
+    public WeatherData predictWeather() {
+        Dwd dwdData = getDwdData();
+        Optional<String> optionalDateTime = getTimeFromDwdData(dwdData);
+        if (optionalDateTime.isPresent()) {
+            String dateTime = optionalDateTime.get();
+            return new WeatherData(WeatherSource.DWD,
+                    getTemperature(dwdData,dateTime),
+                    getHumidity(dwdData,dateTime),
+                    LocalDateTime.parse(dateTime));
+        } else {
+            throw new NoSuchElementException("No weather data found for tomorrow");
+        }
+    }
+}
