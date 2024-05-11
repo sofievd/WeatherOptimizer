@@ -42,8 +42,8 @@ public class SmhiClient implements WeatherDataProvider {
         return mono.block();
     }
 
-    private Optional<TimeSeries> getTimeSeriesFromSmhiData(Smhi smhi) {
-        for (TimeSeries t : smhi.getTimeSeries()) {
+    private Optional<TimeSeries> getTimeSeriesFromSmhiData(Smhi smhiData) {
+        for (TimeSeries t : smhiData.getTimeSeries()) {
             if (ClientHelper.checkTimeInRange(t.getValidTime())) {
                 return Optional.of(t);
             }
