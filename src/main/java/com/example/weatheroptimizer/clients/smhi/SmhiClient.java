@@ -63,7 +63,7 @@ public class SmhiClient implements WeatherDataProvider {
     private Humidity getHumidity(TimeSeries timeSeries) {
         for (Parameter parameter : timeSeries.getParameters()) {
             if (parameter.getName().equalsIgnoreCase("r")) {
-                return new Humidity(Math.toIntExact(Math.round(parameter.getValues().get(0))),
+                return new Humidity((double) Math.toIntExact(Math.round(parameter.getValues().get(0))),
                                                                                 parameter.getUnit());
             }
         }
