@@ -80,7 +80,7 @@ public class DwdClient implements WeatherDataProvider {
         if (opIndex.isPresent()) {
             int index = opIndex.get();
             if (dwdData.getHourly().getRelativeHumidity2m().size() > index) {
-                return new Humidity(dwdData.getHourly().getRelativeHumidity2m().get(index),
+                return new Humidity((double) dwdData.getHourly().getRelativeHumidity2m().get(index),
                         dwdData.getHourlyUnits().getRelativeHumidity2m());
             }
         }
