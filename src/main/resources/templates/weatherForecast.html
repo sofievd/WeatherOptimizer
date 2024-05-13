@@ -11,9 +11,9 @@
   </h2>
   <div>
     Origin: <span th:text="${forcast.source()}"></span> <br>
-    Date: <span th:text="${forcast.validTime()}"></span> <br>
-    Temperature: <span th:text="${forcast.temperature()}"></span> <br>
-    Humidity: <span th:text="${forcast.humidity()}"></span> <br>
+    Date: <span th:text="${dateTime}"></span> <br>
+    Temperature: <span th:text="${forcast.temperature().value()}"></span> <span th:text="${forcast.temperature().unit()}"></span><br>
+    Humidity: <span th:text="${forcast.humidity().value()}"></span>  <span th:text="${forcast.humidity().unit()}"></span><br>
   </div>
 </div>
 

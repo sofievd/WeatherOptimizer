@@ -15,18 +15,21 @@ public class WeatherAggregator {
 
     private WeatherDataProvider smhiClient;
     private WeatherDataProvider dwdClient;
+    private WeatherDataProvider metClient;
 
-    public WeatherAggregator(WeatherDataProvider smhiClient, WeatherDataProvider dwdClient) {
+    public WeatherAggregator(WeatherDataProvider smhiClient, WeatherDataProvider dwdClient, WeatherDataProvider metClient) {
         this.smhiClient = smhiClient;
         this.dwdClient = dwdClient;
+        this.metClient = metClient;
     }
 
     public WeatherData getBestForecast() {
         WeatherData data1 = smhiClient.predictWeather();
         WeatherData data2 = dwdClient.predictWeather();
+        WeatherData data3 = metClient.predictWeather();
 
         List<WeatherData> dataList = new ArrayList<>();
-        Collections.addAll(dataList, data1, data2);
+        Collections.addAll(dataList, data1, data2, data3);
         Collections.reverse(dataList);
 
         if (dataList.get(0).temperature().value() == dataList.get(1).temperature().value()) {
